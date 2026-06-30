@@ -430,7 +430,17 @@
     <h2>Achievements</h2>
   </div>
 
-  <div class="achievement-grid">
+  <div class="achievement-carousel">
+  <button
+    class="carousel-btn achievement-btn-left"
+    id="achievementPrev"
+    type="button"
+    aria-label="View previous achievements"
+  >
+    &#10094;
+  </button>
+
+  <div class="achievement-track" id="achievementTrack">
 
     <!-- Digital Transformation -->
     <article class="card achievement-card">
@@ -852,8 +862,18 @@
           View Achievement
         </a>
       </div>
-    </article>
+        </article>
 
+    </div>
+
+    <button
+      class="carousel-btn achievement-btn-right"
+      id="achievementNext"
+      type="button"
+      aria-label="View more achievements"
+    >
+      &#10095;
+    </button>
   </div>
 </section>
 
@@ -1652,57 +1672,73 @@
 </footer>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const projectTrack = document.getElementById("projectTrack");
-    const previousButton = document.getElementById("projectPrev");
-    const nextButton = document.getElementById("projectNext");
+    function initializeCarousel(trackId, previousButtonId, nextButtonId, cardSelector) {
+      const track = document.getElementById(trackId);
+      const previousButton = document.getElementById(previousButtonId);
+      const nextButton = document.getElementById(nextButtonId);
 
-    if (!projectTrack || !previousButton || !nextButton) {
-      return;
-    }
-
-    function getScrollDistance() {
-      const firstCard = projectTrack.querySelector(".project-card");
-
-      if (!firstCard) {
-        return projectTrack.clientWidth;
+      if (!track || !previousButton || !nextButton) {
+        return;
       }
 
-      const trackStyles = window.getComputedStyle(projectTrack);
-      const gap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
-      const cardWidth = firstCard.getBoundingClientRect().width;
+      function getScrollDistance() {
+        const firstCard = track.querySelector(cardSelector);
 
-      return cardWidth + gap;
+        if (!firstCard) {
+          return track.clientWidth;
+        }
+
+        const trackStyles = window.getComputedStyle(track);
+        const gap =
+          parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+
+        const cardWidth = firstCard.getBoundingClientRect().width;
+
+        return cardWidth + gap;
+      }
+
+      function updateArrowButtons() {
+        const maximumScroll = track.scrollWidth - track.clientWidth;
+
+        previousButton.disabled = track.scrollLeft <= 5;
+
+        nextButton.disabled =
+          track.scrollLeft >= maximumScroll - 5;
+      }
+
+      previousButton.addEventListener("click", function () {
+        track.scrollBy({
+          left: -getScrollDistance(),
+          behavior: "smooth"
+        });
+      });
+
+      nextButton.addEventListener("click", function () {
+        track.scrollBy({
+          left: getScrollDistance(),
+          behavior: "smooth"
+        });
+      });
+
+      track.addEventListener("scroll", updateArrowButtons);
+      window.addEventListener("resize", updateArrowButtons);
+
+      updateArrowButtons();
     }
 
-    function updateArrowButtons() {
-      const maximumScroll =
-        projectTrack.scrollWidth - projectTrack.clientWidth;
+    initializeCarousel(
+      "projectTrack",
+      "projectPrev",
+      "projectNext",
+      ".project-card"
+    );
 
-      previousButton.disabled = projectTrack.scrollLeft <= 5;
-
-      nextButton.disabled =
-        projectTrack.scrollLeft >= maximumScroll - 5;
-    }
-
-    previousButton.addEventListener("click", function () {
-      projectTrack.scrollBy({
-        left: -getScrollDistance(),
-        behavior: "smooth"
-      });
-    });
-
-    nextButton.addEventListener("click", function () {
-      projectTrack.scrollBy({
-        left: getScrollDistance(),
-        behavior: "smooth"
-      });
-    });
-
-    projectTrack.addEventListener("scroll", updateArrowButtons);
-
-    window.addEventListener("resize", updateArrowButtons);
-
-    updateArrowButtons();
+    initializeCarousel(
+      "achievementTrack",
+      "achievementPrev",
+      "achievementNext",
+      ".achievement-card"
+    );
   });
 </script>
 </body>
