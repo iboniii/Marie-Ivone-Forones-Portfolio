@@ -173,18 +173,155 @@
   </div>
 </section>
 
-  <section class="section" id="skills">
-    <h2>Skills & Tools</h2>
-    <div class="grid">
-      <div class="skill">Python</div>
-      <div class="skill">Java</div>
-      <div class="skill">C</div>
-      <div class="skill">Visual Studio</div>
-      <div class="skill">MySQL</div>
-      <div class="skill">Excel</div>
-      <div class="skill">Word</div>
+  <section class="section skills-section" id="skills">
+  <div class="section-heading">
+    <p class="section-label">What I Bring</p>
+    <h2>Skills &amp; Tools</h2>
+
+    <p class="section-description">
+      A combination of technical knowledge, Information Systems practices,
+and professional skills developed through academic projects, training,
+      and hands-on learning experiences.
+    </p>
+  </div>
+
+  <div class="skills-carousel">
+  <button
+    class="carousel-btn skills-btn-left"
+    id="skillsPrev"
+    type="button"
+    aria-label="View previous skill categories"
+  >
+    &#10094;
+  </button>
+
+  <div class="skills-track" id="skillsTrack">
+
+    <!-- Technical Skills -->
+    <article class="skill-category">
+      <div class="skill-category-header">
+        <span class="skill-category-icon" aria-hidden="true">&lt;/&gt;</span>
+
+        <div>
+          <span class="skill-category-number">01</span>
+          <h3>Technical Skills</h3>
+        </div>
+      </div>
+
+      <p class="skill-category-description">
+        Programming, web development, and database technologies used in
+        academic and system-development projects.
+      </p>
+
+      <div class="skill-list">
+        <span class="skill-chip">HTML5</span>
+        <span class="skill-chip">CSS3</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">C</span>
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">MySQL</span>
+      </div>
+    </article>
+
+    <!-- Tools and Platforms -->
+    <article class="skill-category">
+      <div class="skill-category-header">
+        <span class="skill-category-icon" aria-hidden="true">⚙</span>
+
+        <div>
+          <span class="skill-category-number">02</span>
+          <h3>Tools &amp; Platforms</h3>
+        </div>
+      </div>
+
+      <p class="skill-category-description">
+        Development, deployment, data-analysis, and productivity tools used
+        throughout my coursework and projects.
+      </p>
+
+      <div class="skill-list">
+        <span class="skill-chip">Visual Studio Code</span>
+        <span class="skill-chip">GitHub</span>
+        <span class="skill-chip">GitHub Desktop</span>
+        <span class="skill-chip">Supabase</span>
+        <span class="skill-chip">Vercel</span>
+        <span class="skill-chip">WEKA</span>
+        <span class="skill-chip">Microsoft Excel</span>
+        <span class="skill-chip">Microsoft Word</span>
+      </div>
+    </article>
+
+    <!-- Information Systems Skills -->
+    <article class="skill-category">
+      <div class="skill-category-header">
+        <span class="skill-category-icon" aria-hidden="true">▦</span>
+
+        <div>
+          <span class="skill-category-number">03</span>
+          <h3>Information Systems Skills</h3>
+        </div>
+      </div>
+
+      <p class="skill-category-description">
+        Skills focused on understanding business needs and translating them
+        into organized and practical technology solutions.
+      </p>
+
+      <div class="skill-list">
+        <span class="skill-chip">Requirements Gathering</span>
+        <span class="skill-chip">Process Analysis</span>
+        <span class="skill-chip">System Documentation</span>
+        <span class="skill-chip">Database Design</span>
+        <span class="skill-chip">Business Analysis</span>
+        <span class="skill-chip">Project Management</span>
+        <span class="skill-chip">System Testing</span>
+        <span class="skill-chip">Research Writing</span>
+      </div>
+    </article>
+
+    <!-- Professional Skills -->
+    <article class="skill-category">
+      <div class="skill-category-header">
+        <span class="skill-category-icon" aria-hidden="true">◎</span>
+
+        <div>
+          <span class="skill-category-number">04</span>
+          <h3>Professional Skills</h3>
+        </div>
+      </div>
+
+      <p class="skill-category-description">
+        Personal strengths that support effective teamwork, communication,
+        learning, and project completion.
+      </p>
+
+      <div class="skill-list">
+        <span class="skill-chip">Communication</span>
+        <span class="skill-chip">Team Collaboration</span>
+        <span class="skill-chip">Problem-Solving</span>
+        <span class="skill-chip">Adaptability</span>
+        <span class="skill-chip">Time Management</span>
+        <span class="skill-chip">Attention to Detail</span>
+        <span class="skill-chip">Critical Thinking</span>
+      </div>
+        </article>
+
     </div>
-  </section>
+
+    <button
+      class="carousel-btn skills-btn-right"
+      id="skillsNext"
+      type="button"
+      aria-label="View more skill categories"
+    >
+      &#10095;
+    </button>
+  </div>
+
+  </div>
+</section>
 
   <section class="section" id="projects">
   <div class="section-heading">
@@ -1866,6 +2003,13 @@
       "badgePrev",
       "badgeNext",
       ".badge-card"
+    );
+
+    initializeCarousel(
+      "skillsTrack",
+      "skillsPrev",
+      "skillsNext",
+      ".skill-category"
     );
   });
 </script>
