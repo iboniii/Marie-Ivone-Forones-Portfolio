@@ -883,7 +883,17 @@
     <h2>Certifications</h2>
   </div>
 
-  <div class="certification-grid">
+  <div class="certification-carousel">
+  <button
+    class="carousel-btn certification-btn-left"
+    id="certificationPrev"
+    type="button"
+    aria-label="View previous certifications"
+  >
+    &#10094;
+  </button>
+
+  <div class="certification-track" id="certificationTrack">
 
     <!-- Introduction to Cybersecurity -->
     <article class="card certification-card">
@@ -1274,8 +1284,18 @@
           Verify Certificate
         </a>
       </div>
-    </article>
+        </article>
 
+    </div>
+
+    <button
+      class="carousel-btn certification-btn-right"
+      id="certificationNext"
+      type="button"
+      aria-label="View more certifications"
+    >
+      &#10095;
+    </button>
   </div>
 </section>
 
@@ -1672,7 +1692,12 @@
 </footer>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    function initializeCarousel(trackId, previousButtonId, nextButtonId, cardSelector) {
+    function initializeCarousel(
+      trackId,
+      previousButtonId,
+      nextButtonId,
+      cardSelector
+    ) {
       const track = document.getElementById(trackId);
       const previousButton = document.getElementById(previousButtonId);
       const nextButton = document.getElementById(nextButtonId);
@@ -1698,7 +1723,8 @@
       }
 
       function updateArrowButtons() {
-        const maximumScroll = track.scrollWidth - track.clientWidth;
+        const maximumScroll =
+          track.scrollWidth - track.clientWidth;
 
         previousButton.disabled = track.scrollLeft <= 5;
 
@@ -1738,6 +1764,13 @@
       "achievementPrev",
       "achievementNext",
       ".achievement-card"
+    );
+
+    initializeCarousel(
+      "certificationTrack",
+      "certificationPrev",
+      "certificationNext",
+      ".certification-card"
     );
   });
 </script>
