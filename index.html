@@ -124,7 +124,17 @@
     <h2>Featured Projects</h2>
   </div>
 
-  <div class="grid cards">
+  <div class="project-carousel">
+  <button
+    class="carousel-btn carousel-btn-left"
+    id="projectPrev"
+    type="button"
+    aria-label="View previous projects"
+  >
+    &#10094;
+  </button>
+
+  <div class="project-track" id="projectTrack">
 
     <!-- SkillSync -->
     <article class="card project-card">
@@ -399,9 +409,19 @@
       </a>
     </div>
   </div>
-</article>
+    </article>
 
   </div>
+
+  <button
+    class="carousel-btn carousel-btn-right"
+    id="projectNext"
+    type="button"
+    aria-label="View more projects"
+  >
+    &#10095;
+  </button>
+</div>
 </section>
 
   <section class="section" id="achievements">
@@ -1630,5 +1650,60 @@
     </a>
   </div>
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const projectTrack = document.getElementById("projectTrack");
+    const previousButton = document.getElementById("projectPrev");
+    const nextButton = document.getElementById("projectNext");
+
+    if (!projectTrack || !previousButton || !nextButton) {
+      return;
+    }
+
+    function getScrollDistance() {
+      const firstCard = projectTrack.querySelector(".project-card");
+
+      if (!firstCard) {
+        return projectTrack.clientWidth;
+      }
+
+      const trackStyles = window.getComputedStyle(projectTrack);
+      const gap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+      const cardWidth = firstCard.getBoundingClientRect().width;
+
+      return cardWidth + gap;
+    }
+
+    function updateArrowButtons() {
+      const maximumScroll =
+        projectTrack.scrollWidth - projectTrack.clientWidth;
+
+      previousButton.disabled = projectTrack.scrollLeft <= 5;
+
+      nextButton.disabled =
+        projectTrack.scrollLeft >= maximumScroll - 5;
+    }
+
+    previousButton.addEventListener("click", function () {
+      projectTrack.scrollBy({
+        left: -getScrollDistance(),
+        behavior: "smooth"
+      });
+    });
+
+    nextButton.addEventListener("click", function () {
+      projectTrack.scrollBy({
+        left: getScrollDistance(),
+        behavior: "smooth"
+      });
+    });
+
+    projectTrack.addEventListener("scroll", updateArrowButtons);
+
+    window.addEventListener("resize", updateArrowButtons);
+
+    updateArrowButtons();
+  });
+</script>
 </body>
 </html>
