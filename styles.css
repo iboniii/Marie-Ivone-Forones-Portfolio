@@ -1770,12 +1770,12 @@ a:focus-visible,
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 75px);
+  min-height: auto;
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.8fr);
   gap: clamp(50px, 8vw, 110px);
   align-items: center;
-  padding: 90px 8% 110px;
+  padding: 45px 8% 85px;
   overflow: hidden;
   background:
     radial-gradient(
