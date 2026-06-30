@@ -1305,7 +1305,17 @@
     <h2>Badges</h2>
   </div>
 
-  <div class="badge-grid">
+  <div class="badge-carousel">
+  <button
+    class="carousel-btn badge-btn-left"
+    id="badgePrev"
+    type="button"
+    aria-label="View previous badges"
+  >
+    &#10094;
+  </button>
+
+  <div class="badge-track" id="badgeTrack">
 
     <!-- Introduction to Cybersecurity -->
     <article class="card badge-card">
@@ -1520,8 +1530,18 @@
           Verify Badge
         </a>
       </div>
-    </article>
+        </article>
 
+    </div>
+
+    <button
+      class="carousel-btn badge-btn-right"
+      id="badgeNext"
+      type="button"
+      aria-label="View more badges"
+    >
+      &#10095;
+    </button>
   </div>
 </section>
 
@@ -1771,6 +1791,13 @@
       "certificationPrev",
       "certificationNext",
       ".certification-card"
+    );
+
+    initializeCarousel(
+      "badgeTrack",
+      "badgePrev",
+      "badgeNext",
+      ".badge-card"
     );
   });
 </script>
